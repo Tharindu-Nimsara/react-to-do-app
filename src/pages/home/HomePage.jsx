@@ -4,6 +4,7 @@ import TodoList from "../../components/TodoList";
 
 export default function HomePage() {
   const [tasks, setTasks] = useState([]);
+  const [editingText, setEditingText] = useState("");
 
   // Add a new task
   const addTask = (taskText) => {
@@ -28,6 +29,13 @@ export default function HomePage() {
       )
     );
   };
+  // Edit task function
+  const editTask = (id, text) => {
+    // Delete the task
+    deleteTask(id);
+    // Put text in input box
+    setEditingText(text);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 py-8 px-4">
@@ -43,13 +51,18 @@ export default function HomePage() {
         </div>
 
         {/* Input Component */}
-        <TodoInput onAddTask={addTask} />
+        <TodoInput
+          onAddTask={addTask}
+          editingText={editingText}
+          setEditingText={setEditingText}
+        />
 
         {/* List Component */}
         <TodoList
           tasks={tasks}
           onToggleComplete={toggleComplete}
           onDeleteTask={deleteTask}
+          onEditTask={editTask}
         />
       </div>
     </div>

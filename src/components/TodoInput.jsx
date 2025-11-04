@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function TodoInput({ onAddTask }) {
+export default function TodoInput({ onAddTask, editingText, setEditingText  }) {
   const [inputValue, setInputValue] = useState("");
+
+   // When editingText changes, update input
+  useEffect(() => {
+    if (editingText) {
+      setInputValue(editingText);
+      setEditingText(""); // Clear editingText after setting
+    }
+  }, [editingText, setEditingText]);
 
   const handleAdd = () => {
     if (inputValue.trim() !== "") {
@@ -15,6 +23,7 @@ export default function TodoInput({ onAddTask }) {
       handleAdd();
     }
   };
+
 
   return (
     <div className="bg-white rounded-lg shadow-2xl p-6 mb-6">

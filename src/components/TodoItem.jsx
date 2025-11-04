@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TodoItem({ task, onToggleComplete, onDeleteTask }) {
+export default function TodoItem({ task, onToggleComplete, onDeleteTask, onEditTask }) {
   return (
     <li className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
       {/* Checkbox */}
@@ -19,6 +19,14 @@ export default function TodoItem({ task, onToggleComplete, onDeleteTask }) {
       >
         {task.text}
       </span>
+
+        {/* Delete Button */}
+      <button
+        onClick={() => onEditTask(task.id, task.text)}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded-lg transition duration-200"
+      >
+        Edit
+      </button>
 
       {/* Delete Button */}
       <button

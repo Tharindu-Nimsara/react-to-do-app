@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ tasks, onToggleComplete, onDeleteTask }) {
+export default function TodoList({ tasks, onToggleComplete, onDeleteTask, onEditTask }) {
   const completedCount = tasks.filter((task) => task.completed).length;
 
   return (
@@ -19,6 +19,7 @@ export default function TodoList({ tasks, onToggleComplete, onDeleteTask }) {
                 task={task}
                 onToggleComplete={onToggleComplete}
                 onDeleteTask={onDeleteTask}
+                onEditTask={onEditTask}
               />
             ))}
           </ul>
